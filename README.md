@@ -13,7 +13,9 @@ This website contains some data entries for some famous books, movies, and music
 - [`_POST`](http://php.net/manual/en/reserved.variables.post.php) to correctly handle form submission without URL queries as the case in `_GET`
 - Header redirect to avoid form submission repetition, such as in `header("location:thanks.php")` and `exit`
 - Enable [output buffer](http://php.net/manual/en/book.outcontrol.php) with `ob_start()` or changing `php.ini` to enable header redirection
+- User input validation and filtering, such as `trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));`
 - Prevent spam by using "Spam Honey Pot Field", which is an invisible input field to trick spam robot to fill it in thus expose itself as a robot
+- Generate and send email to users using [PHP Mailer](https://github.com/PHPMailer/PHPMailer)
 - Multidimentional associative array, and various built-in array functions such as [`array_rand`](http://php.net/manual/en/function.array-rand.php), [`asort`](http://php.net/manual/en/function.asort.php), [`implode`](http://php.net/manual/en/function.implode.php), [`count`](http://php.net/manual/en/function.count.php), etc.
 - String interpolation and interpretation
 - Blending PHP together with plain HTML

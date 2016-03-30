@@ -1,4 +1,13 @@
 <?php
+/*
+ * Structure of this script is bit complicated, here is the explanation:
+ *
+ * 1. Check Request Method: --> POST or GET?
+ * 2. If POST: handle user input, send email, redirect to thank you message by sending a GET with ?status=thanks
+ * 3. If Not POST: Do we have GET?
+ * 4.       YES: check if status=thanks. If so, display thank you message.
+ *          NO:  display the form.
+ */
 // handling the data submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name    = trim(filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING));
@@ -32,11 +41,27 @@ Please do not reply to this email, as this is an automated email and no one is m
 Have a nice day!
 
 Charlie Guan</pre>";
-	ob_start();
-	echo $email_body;
 
-// Send email here. Do this later.
+	// Send email here using PHP Mailer.
+	require("inc/PHPMailer/class.phpmailer.php");
+	$mail = new PHPMailer;
+	if (!$mail->validateAddress($email)) {
+		echo "Invalid Email Address";
+		exit;
+	}
+	$mail->setFrom($email, $name);
+	$mail->addAddress('charliegdev@gmail.com', 'Charlie Guan');     // Add a recipient
 
+	$mail->isHTML(false);                                  // Set email format to HTML
+
+	$mail->Subject = 'Personal Media Library Suggestion from $name';
+	$mail->Body    = $email_body;
+
+	if (!$mail->send()) {
+		echo 'Message could not be sent.';
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
+		exit;
+	} 
 	// Redirect to thank you message.
 	header("location:suggest.php?status=thanks");
 }
