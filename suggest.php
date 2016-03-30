@@ -1,11 +1,22 @@
 <?php
+// handling the data submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$name    = $_POST["name"];
-	$email   = $_POST["email"];
-	$details = $_POST["details"];
+	$name    = trim(filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING));
+	$email   = trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));
+	$details = trim(filter_input(INPUT_POST, "details", FILTER_SANITIZE_SPECIAL_CHARS));
 
+
+	if ($name == "" || $email == "" || $details == "") {
+		echo "Please fill in your name, email address, and your suggestion.";
+		exit;
+	}
+	if ($_POST["address"] != "") {
+		// Spam by robot!
+		echo "Bad form input";
+		exit;
+	}
 // construct email body
-	$email_body .= "<pre>
+	$email_body = "<pre>
 Hello $name!
 
 Thank you for contacting us. We have received your message, and we will get back to you as soon as we can!
@@ -25,24 +36,31 @@ Charlie Guan</pre>";
 	echo $email_body;
 
 // Send email here. Do this later.
+
+	// Redirect to thank you message.
 	header("location:suggest.php?status=thanks");
 }
 
-
+// displaying form
 $pageTitle = 'Suggest a Media Item';
 $section   = "suggest";
 include("inc/header.php");
 ?>
-
 <div class="section page">
 	<div class="wrapper">
 		<h1>Suggest a Media Item</h1>
-		<?php if (isset($_GET["status"]) && $_GET['status'] == 'thanks') { ?>
+
+		<?php
+		// display thank you message after submission
+		if (isset($_GET["status"]) && $_GET['status'] == 'thanks') {
+			?>
 			<div class="section page">
 				<h1>Thank you</h1>
 				<p>Thank you for your suggestion!</p>
 			</div>
 		<?php } else { ?>
+
+			<!-- display suggestion form -->
 			<p>If you think there is something I&rsquo;m missing, let me know! Complete the form to send me an
 				email.</p>
 			<form method="post" action="suggest.php">
@@ -58,6 +76,13 @@ include("inc/header.php");
 					<tr>
 						<th><label for="details">Suggest Item Details</label></th>
 						<td><textarea id="details" name="details"></textarea></td>
+					</tr>
+					<!-- Spam honey pot field -->
+					<tr style="display:none">
+						<th><label for="address">Address</label></th>
+						<td><input type="text" id="address" name="address"/>
+							<p>Please leave this field blank.</p>
+						</td>
 					</tr>
 				</table>
 				<input type="submit" value="Send"/>
