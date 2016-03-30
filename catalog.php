@@ -19,6 +19,7 @@ include("inc/header.php"); ?>
 		<div class="wrapper">
 			<h1>
 				<?php
+				// Display something like "Full Catalog > Books"
 				if ($section != null) {
 					echo "<a href='catalog.php'>Full Catalog</a> &gt; ";
 				}
@@ -27,6 +28,7 @@ include("inc/header.php"); ?>
 			</h1>
 			<ul class="items">
 				<?php
+				// Display all the items in current category.
 				$currentCatEntries = array_category($catalog, $section);
 				foreach ($currentCatEntries as $id) {
 					echo get_item_html($id, $catalog[ $id ]);
