@@ -52,7 +52,7 @@ Charlie Guan</pre>";
 	$mail->setFrom($email, $name);
 	$mail->addAddress('charliegdev@gmail.com', 'Charlie Guan');     // Add a recipient
 
-	$mail->isHTML(false);                                  // Set email format to HTML
+	$mail->isHTML(true);                                  // Set email format to HTML
 
 	$mail->Subject = 'Personal Media Library Suggestion from $name';
 	$mail->Body    = $email_body;
@@ -61,7 +61,7 @@ Charlie Guan</pre>";
 		echo 'Message could not be sent.';
 		echo 'Mailer Error: ' . $mail->ErrorInfo;
 		exit;
-	} 
+	}
 	// Redirect to thank you message.
 	header("location:suggest.php?status=thanks");
 }
