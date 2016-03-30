@@ -12,10 +12,8 @@ if ($_GET["cat"] == "books") {
 	$pageTitle = "Full Catalog";
 	$section   = null;
 }
-
 include("inc/data.php");
 include("inc/functions.php");
-
 include("inc/header.php"); ?>
 	<div class="section catalog page">
 		<div class="wrapper">
@@ -36,6 +34,5 @@ include("inc/header.php"); ?>
 				?>
 			</ul>
 		</div>
-
 	</div>
 <?php include("inc/footer.php"); ?>

@@ -38,3 +38,5 @@ function array_category($catalog, $category) {
 
 	return array_keys($output);
 }
+?>
+
