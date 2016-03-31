@@ -10,7 +10,7 @@ This website contains some data entries for some famous books, movies, and music
 You can also use the suggestion form on the website to leave some suggestions. You will get a confirmation email.
 
 ## PHP Features Used
-- User input validation and filtering, such as `trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));`
+- Validate user input validation, such as `trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));`, and gracefully handle input errors
 - Generate and send email to users using [PHP Mailer](https://github.com/PHPMailer/PHPMailer)
 - [`_$GET`](http://php.net/manual/en/reserved.variables.get.php) in URL queries such as `href="catalog.php?cat=books"`
 - [`_$POST`](http://php.net/manual/en/reserved.variables.post.php) to correctly handle form submission without URL queries as the case in `_$GET`
