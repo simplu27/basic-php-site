@@ -45,7 +45,7 @@ Thank you for contacting us. We have received your message, and we will get back
 
 This is the new item you suggested:
 
----------------------------------------------
+-----------------------
 Name: $name
 Email: $email
 Suggested Item: 
@@ -55,15 +55,15 @@ Suggested Item:
 	Genre: $genre
 	Year: $year
 	Details: $detail
----------------------------------------------
+-----------------------
 
 Please do not reply to this email, as this is an automated email and no one is monitoring it.
 
 Have a nice day!
 
 Charlie Guan</pre>";
-		$mail->setFrom($email, $name);
-		$mail->addAddress('charliegdev@gmail.com', 'Charlie Guan');     // Add a recipient
+		$mail->setFrom('charliegdev@gmail.com', 'Charlie Guan');
+		$mail->addAddress($email, $name);     // Add a recipient
 
 		$mail->isHTML(true);                                  // Set email format to HTML
 
