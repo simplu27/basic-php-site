@@ -41,20 +41,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$email_body = "<pre>
 Hello $name!
 
-Thank you for contacting us. We have received your message, and we will get back to you as soon as we can!
+Thank you for contacting us. This is a confirmation letter to let you know that we have received your message, 
+and we will get back to you as soon as we can!
 
 This is the new item you suggested:
 
 -----------------------
-Name: $name
+Name:  $name
 Email: $email
 Suggested Item: 
-	Category: $category
-	Title: $title
-	Format: $format
-	Genre: $genre
-	Year: $year
-	Details: $detail
+	Category:  $category
+	Title:     $title
+	Format:    $format
+	Genre:     $genre
+	Year:      $year
+	Details:   $detail
 -----------------------
 
 Please do not reply to this email, as this is an automated email and no one is monitoring it.
