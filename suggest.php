@@ -55,7 +55,7 @@ Suggested Item:
 	Format:    $format
 	Genre:     $genre
 	Year:      $year
-	Details:   $detail
+	Details:   $details
 -----------------------
 
 Please do not reply to this email, as this is an automated email and no one is monitoring it.
@@ -68,7 +68,7 @@ Charlie Guan</pre>";
 
 		$mail->isHTML(true);                                  // Set email format to HTML
 
-		$mail->Subject = 'Personal Media Library Suggestion from $name';
+		$mail->Subject = "Personal Media Library Suggestion from $name";
 		$mail->Body    = $email_body;
 
 		if ($mail->send()) {
